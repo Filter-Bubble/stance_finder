@@ -19,7 +19,6 @@
    * - Continuous integration
      - |Python Build| |PyPI Publish|
 
-(Customize these badges with your own links, and check https://shields.io/ or https://badgen.net/ to see which other badges are available.)
 
 .. |GitHub Badge| image:: https://img.shields.io/badge/github-repo-000.svg?logo=github&labelColor=gray&color=blue
    :target: https://github.com/Filter-Bubble/stance_finder

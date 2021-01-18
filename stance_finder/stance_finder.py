@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 import logging
+import stanza
+import e2edutch.download
 
 logger = logging.getLogger(__name__)
 
 
-# FIXME: put actual code here
-def example():
-    logger.info('Providing information about the excecution of the function.')
+def download_models():
+    logger.info('Downloading stanza models...')
+    stanza.download('nl')
+    logger.info('Downloading e2edutch models...')
+    e2edutch.download.download_data()
