@@ -12,11 +12,9 @@ test_deps = [
     'pycodestyle',
 ]
 
-# To update the package version number, edit CITATION.cff
-with open('CITATION.cff', 'r') as cff:
-    for line in cff:
-        if 'version:' in line:
-            version = line.replace('version:', '').strip().strip('"')
+__version__ = None
+with open(os.path.join(os.path.dirname(__file__), 'stance-finder/__version__.py')) as versionpy:
+    exec(versionpy.read())
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
