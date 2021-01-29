@@ -31,7 +31,7 @@ jobs:
           pip install -r requirements.txt
       - name: Check style against standards using prospector
         shell: bash -l {0}
-        run: prospector -o grouped -o pylint:pylint-report.txt
+        run: prospector -0 -o grouped -o pylint:pylint-report.txt
       - name: Build
         shell: bash -l {0}
         run: |
