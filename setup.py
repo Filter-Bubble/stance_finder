@@ -21,7 +21,7 @@ with open('README.rst') as readme_file:
 
 setup(
     name='stance_finder',
-    version=version,
+    version=__version__,
     description="Python module for finding (candidate) stances in Dutch news articles",
     long_description=readme + '\n\n',
     author="Dafne van Kuppevelt",
