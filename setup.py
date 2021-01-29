@@ -13,7 +13,7 @@ test_deps = [
 ]
 
 __version__ = None
-with open(os.path.join(os.path.dirname(__file__), 'stance-finder/__version__.py')) as versionpy:
+with open(os.path.join(os.path.dirname(__file__), 'stance_finder/__version__.py')) as versionpy:
     exec(versionpy.read())
 
 with open('README.rst') as readme_file:
