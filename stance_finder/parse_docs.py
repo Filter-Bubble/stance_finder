@@ -3,6 +3,7 @@ import amcatclient
 import json
 import os
 from tqdm import tqdm
+import logging
 
 import stanza
 import e2edutch.stanza
@@ -49,14 +50,18 @@ def parse_docs(n, output_dir):
     nlp = stanza.Pipeline(lang='nl',
                           processors='tokenize,lemma,pos,depparse,srl,coref')
     for art in tqdm(get_n_articles(n)):
-        doc = nlp(art['text'])
-        doc_dict = stanza_doc_to_dict(doc,
-                                      doc_id=art['id'],
-                                      title=art['title'],
-                                      text=art['text'])
-        output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
-        with open(output_filename, 'w') as fout:
-            json.dump(doc_dict, fout)
+        try:
+            doc = nlp(art['text'])
+            doc_dict = stanza_doc_to_dict(doc,
+                                          doc_id=art['id'],
+                                          title=art['title'],
+                                          text=art['text'])
+            output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
+            with open(output_filename, 'w') as fout:
+                json.dump(doc_dict, fout)
+        except Exception as e:
+            logging.error('Error with article {}'.format(art['id']))
+            logging.error(e)
 
 
 def get_parser():
