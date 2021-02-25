@@ -9,6 +9,8 @@ import stanza
 import e2edutch.stanza
 import stroll.stanza
 
+logger = logging.getLogger(__name__)
+
 conn = amcatclient.AmcatAPI("http://vu.amcat.nl")
 project = 69
 articleset = 2485
@@ -61,9 +63,14 @@ def parse_docs(n, output_dir):
 
                 with open(output_filename, 'w') as fout:
                     json.dump(doc_dict, fout)
+            else:
+                logger.info("Document {} already parsed".format(art['id']))
         except Exception as e:
-            logging.error('Error with article {}'.format(art['id']))
-            logging.error(e)
+            logger.error('Error with article {}'.format(art['id']))
+            logger.error(e)
+            # Refresh pipeline
+            nlp = stanza.Pipeline(lang='nl',
+                                  processors='tokenize,lemma,pos,depparse,srl,coref')
 
 
 def get_parser():
@@ -76,6 +83,9 @@ def get_parser():
 
 if __name__ == "__main__":
     args = get_parser().parse_args()
+    if args.verbose:
+        logger.setLevel(logging.INFO)
+        logger.info("Set logging level to INFO")
     if args.nr_docs is None:
         n = nr_docs
     else:
