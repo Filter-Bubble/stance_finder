@@ -51,14 +51,16 @@ def parse_docs(n, output_dir):
                           processors='tokenize,lemma,pos,depparse,srl,coref')
     for art in tqdm(get_n_articles(n)):
         try:
-            doc = nlp(art['text'])
-            doc_dict = stanza_doc_to_dict(doc,
-                                          doc_id=art['id'],
-                                          title=art['title'],
-                                          text=art['text'])
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
-            with open(output_filename, 'w') as fout:
-                json.dump(doc_dict, fout)
+            if not os.path.exists(output_filename):
+                doc = nlp(art['text'])
+                doc_dict = stanza_doc_to_dict(doc,
+                                              doc_id=art['id'],
+                                              title=art['title'],
+                                              text=art['text'])
+
+                with open(output_filename, 'w') as fout:
+                    json.dump(doc_dict, fout)
         except Exception as e:
             logging.error('Error with article {}'.format(art['id']))
             logging.error(e)
