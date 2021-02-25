@@ -17,15 +17,25 @@ articleset = 2485
 nr_docs = 12100
 
 
-def get_n_articles(n=10):
-    for i, a in enumerate(conn.get_articles(
-            project=project,
-            articleset=articleset,
-            columns=['date', 'title', 'text'])):
-        yield a
-
-        if i >= n-1:
+def get_n_articles(n=10, start=0):
+    page_size = 1000
+    page_start = 1
+    i = 0
+    while True:
+        for a in conn.get_articles(
+                project=project,
+                articleset=articleset,
+                page_size=page_size,
+                page=page_start,
+                columns=['date', 'title', 'text']):
+            if i >= start+n:
+                break
+            if i >= start:
+                yield a
+            i += 1
+        if i >= start+n:
             break
+        page_start += 1
 
 
 def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
@@ -48,10 +58,10 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     return doc_dict
 
 
-def parse_docs(n, output_dir):
+def parse_docs(n, output_dir, start):
     nlp = stanza.Pipeline(lang='nl',
                           processors='tokenize,lemma,pos,depparse,srl,coref')
-    for art in tqdm(get_n_articles(n)):
+    for art in tqdm(get_n_articles(n, start)):
         try:
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
@@ -66,7 +76,7 @@ def parse_docs(n, output_dir):
             else:
                 logger.info("Document {} already parsed".format(art['id']))
         except Exception as e:
-            logger.error('Error with article {}'.format(art['id']))
+            logger.error('Error with article {}'.format(art.get('id', 'UNKNOWN')))
             logger.error(e)
             # Refresh pipeline
             nlp = stanza.Pipeline(lang='nl',
@@ -77,6 +87,7 @@ def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-o', '--output_dir', default=os.path.curdir)
     parser.add_argument('-n', '--nr_docs', type=int, default=None)
+    parser.add_argument('-s', '--start_doc', type=int, default=0)
     parser.add_argument('-v', '--verbose', action='store_true')
     return parser
 
@@ -91,4 +102,4 @@ if __name__ == "__main__":
     else:
         n = args.nr_docs
 
-    parse_docs(n, args.output_dir)
+    parse_docs(n, args.output_dir, args.start_doc)
