@@ -17,12 +17,13 @@ articleset = 2485
 nr_docs = 12100
 
 
-def get_n_articles(n=10, start=0):
-    page_size = 1000
+def get_n_articles(n=10, start=0, page_size=1000):
+    page = math.floor(start/page_size)
     articles = conn.get_articles(project=project, articleset=articleset,
                                  columns=['date', 'title', 'text'],
-                                 page_size=page_size)
-    for i, a in zip(range(n), articles):
+                                 page_size=page_size,
+                                 page=page)
+    for i, a in zip(range(start+n), articles):
         if i >= start:
             yield a
 
