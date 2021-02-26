@@ -19,23 +19,12 @@ nr_docs = 12100
 
 def get_n_articles(n=10, start=0):
     page_size = 1000
-    page_start = 1
-    i = 0
-    while True:
-        for a in conn.get_articles(
-                project=project,
-                articleset=articleset,
-                page_size=page_size,
-                page=page_start,
-                columns=['date', 'title', 'text']):
-            if i >= start+n:
-                break
-            if i >= start:
-                yield a
-            i += 1
-        if i >= start+n:
-            break
-        page_start += 1
+    articles = conn.get_articles(project=project, articleset=articleset,
+                                 columns=['date', 'title', 'text'],
+                                 page_size=page_size)
+    for i, a in zip(range(n), articles):
+        if i >= start:
+            yield a
 
 
 def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
@@ -61,7 +50,7 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
 def parse_docs(n, output_dir, start):
     nlp = stanza.Pipeline(lang='nl',
                           processors='tokenize,lemma,pos,depparse,srl,coref')
-    for art in tqdm(get_n_articles(n, start)):
+    for art in tqdm(get_n_articles(n, start), total=n):
         try:
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
@@ -70,7 +59,6 @@ def parse_docs(n, output_dir, start):
                                               doc_id=art['id'],
                                               title=art['title'],
                                               text=art['text'])
-
                 with open(output_filename, 'w') as fout:
                     json.dump(doc_dict, fout)
             else:
