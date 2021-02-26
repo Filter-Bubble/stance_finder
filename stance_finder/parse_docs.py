@@ -18,15 +18,26 @@ articleset = 2485
 nr_docs = 12100
 
 
-def get_n_articles(n=10, start=0, page_size=1000):
-    page = math.floor(start/page_size)
-    articles = conn.get_articles(project=project, articleset=articleset,
-                                 columns=['date', 'title', 'text'],
-                                 page_size=page_size,
-                                 page=page)
-    for i, a in zip(range(start+n), articles):
-        if i >= start:
-            yield a
+def get_articles(id_list, batch_size=100, nr_articles=None):
+    i = 0
+    if nr_articles is None:
+        nr_articles = len(id_list)
+    for batch in range(math.ceil(nr_articles/batch_size)):
+        id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
+        articles = conn.get_articles_by_id(articles=id_list_sub,
+                                           project=project,
+                                           articleset=articleset,
+                                           columns='date,title,text')
+        for art in articles:
+            if i < nr_articles:
+                yield art
+            i += 1
+
+
+def get_article_ids():
+    articles_ids = [a['id'] for a in conn.get_articles(
+        project=project, articleset=articleset, columns=[])]
+    return articles_ids
 
 
 def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
@@ -49,10 +60,12 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     return doc_dict
 
 
-def parse_docs(n, output_dir, start):
+def parse_docs(n, output_dir, batch_size):
+    article_ids = get_article_ids()
+    logger.info('Number of ids: {}'.format(len(article_ids)))
     nlp = stanza.Pipeline(lang='nl',
                           processors='tokenize,lemma,pos,depparse,srl,coref')
-    for art in tqdm(get_n_articles(n, start), total=n):
+    for art in tqdm(get_articles(article_ids, nr_articles=n, batch_size=batch_size), total=n):
         try:
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
@@ -77,7 +90,7 @@ def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-o', '--output_dir', default=os.path.curdir)
     parser.add_argument('-n', '--nr_docs', type=int, default=None)
-    parser.add_argument('-s', '--start_doc', type=int, default=0)
+    parser.add_argument('-b', '--batch_size', type=int, default=100)
     parser.add_argument('-v', '--verbose', action='store_true')
     return parser
 
@@ -92,4 +105,4 @@ if __name__ == "__main__":
     else:
         n = args.nr_docs
 
-    parse_docs(n, args.output_dir, args.start_doc)
+    parse_docs(n, args.output_dir, args.batch_size)
