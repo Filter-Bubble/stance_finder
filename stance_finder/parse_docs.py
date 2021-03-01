@@ -12,7 +12,7 @@ import math
 
 logger = logging.getLogger(__name__)
 
-conn = amcatclient.AmcatAPI("http://vu.amcat.nl")
+
 project = 69
 articleset = 2485
 nr_docs = 12100
@@ -23,6 +23,7 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
     if nr_articles is None:
         nr_articles = len(id_list)
     for batch in range(math.ceil(nr_articles/batch_size)):
+        conn = amcatclient.AmcatAPI("http://vu.amcat.nl")
         id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
         articles = conn.get_articles_by_id(articles=id_list_sub,
                                            project=project,
@@ -35,6 +36,7 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
 
 
 def get_article_ids():
+    conn = amcatclient.AmcatAPI("http://vu.amcat.nl")
     articles_ids = [a['id'] for a in conn.get_articles(
         project=project, articleset=articleset, columns=[])]
     return articles_ids
