@@ -4,7 +4,7 @@ import json
 import os
 from tqdm import tqdm
 import logging
-
+import glob
 import stanza
 import e2edutch.stanza
 import stroll.stanza
@@ -62,12 +62,27 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     return doc_dict
 
 
-def parse_docs(n, output_dir, batch_size):
-    article_ids = get_article_ids()
-    logger.info('Number of ids: {}'.format(len(article_ids)))
+def parse_docs(n, output_dir, batch_size, input_dir=None):
+    if input_dir is None:
+        article_ids = get_article_ids()
+        articles = get_articles(article_ids, nr_articles=n, batch_size=batch_size)
+        logger.info('Number of ids: {}'.format(len(article_ids)))
+    else:
+        articles = []
+        for fname in glob.glob(os.path.join(input_dir, '*.json')):
+            try:
+                with open(fname) as fin:
+                    art = json.load(fin)
+                    articles.append(art)
+            except Exception as e:
+                logger.error('Error reading file {}'.format(fname))
+                logger.error(e)
+        logger.info('Number of articles: {}'.format(len(articles)))
+        n = len(articles)
+    # Create nlp pipeline
     nlp = stanza.Pipeline(lang='nl',
                           processors='tokenize,lemma,pos,depparse,srl,coref')
-    for art in tqdm(get_articles(article_ids, nr_articles=n, batch_size=batch_size), total=n):
+    for art in tqdm(articles, total=n):
         try:
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
@@ -91,6 +106,7 @@ def parse_docs(n, output_dir, batch_size):
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-o', '--output_dir', default=os.path.curdir)
+    parser.add_argument('-i', '--input_dir', default=None)
     parser.add_argument('-n', '--nr_docs', type=int, default=None)
     parser.add_argument('-b', '--batch_size', type=int, default=100)
     parser.add_argument('-v', '--verbose', action='store_true')
@@ -107,4 +123,4 @@ if __name__ == "__main__":
     else:
         n = args.nr_docs
 
-    parse_docs(n, args.output_dir, args.batch_size)
+    parse_docs(n, args.output_dir, args.batch_size, args.input_dir)
