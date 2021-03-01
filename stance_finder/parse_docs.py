@@ -24,11 +24,11 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
         nr_articles = len(id_list)
     for batch in range(math.ceil(nr_articles/batch_size)):
         id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
-        with amcatclient.AmcatAPI("http://vu.amcat.nl") as conn:
-            articles = conn.get_articles_by_id(articles=id_list_sub,
-                                               project=project,
-                                               articleset=articleset,
-                                               columns='date,title,text')
+        conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
+        articles = conn.get_articles_by_id(articles=id_list_sub,
+                                           project=project,
+                                           articleset=articleset,
+                                           columns='date,title,text')
         for art in articles:
             if i < nr_articles:
                 yield art
@@ -36,9 +36,9 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
 
 
 def get_article_ids():
-    with amcatclient.AmcatAPI("http://vu.amcat.nl") as conn:
-        articles_ids = [a['id'] for a in conn.get_articles(
-            project=project, articleset=articleset, columns=[])]
+    conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
+    articles_ids = [a['id'] for a in conn.get_articles(
+        project=project, articleset=articleset, columns=[])]
     return articles_ids
 
 
