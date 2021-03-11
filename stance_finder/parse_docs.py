@@ -13,10 +13,6 @@ import math
 logger = logging.getLogger(__name__)
 
 
-project = 69
-articleset = 2485
-
-
 def get_articles(id_list, batch_size=100, nr_articles=None):
     i = 0
     if nr_articles is None:
@@ -25,8 +21,8 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
         id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
         conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
         articles = conn.get_articles_by_id(articles=id_list_sub,
-                                           project=project,
-                                           articleset=articleset,
+                                           # project=project,
+                                           # articleset=articleset,
                                            columns='date,title,text')
         for art in articles:
             if i < nr_articles:
@@ -34,7 +30,7 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
             i += 1
 
 
-def get_article_ids():
+def get_article_ids(project, articleset):
     conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
     articles_ids = [a['id'] for a in conn.get_articles(
         project=project, articleset=articleset, columns=[])]
@@ -70,13 +66,14 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     return doc_dict
 
 
-def parse_docs(n, output_dir, batch_size, input_dir=None):
+def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articleset=None):
     if input_dir is None:
-        article_ids = get_article_ids()
+        article_ids = get_article_ids(project=project, articleset=articleset)
         article_ids = filter_article_ids(article_ids, output_dir)
         if n is None:
             n = len(article_ids)
-        articles = get_articles(article_ids, nr_articles=n, batch_size=batch_size)
+        articles = get_articles(article_ids, nr_articles=n,
+                                batch_size=batch_size)
         logger.info('Number of ids: {}'.format(len(article_ids)))
     else:
         articles = []
@@ -120,6 +117,8 @@ def get_parser():
     parser.add_argument('-i', '--input_dir', default=None)
     parser.add_argument('-n', '--nr_docs', type=int, default=None)
     parser.add_argument('-b', '--batch_size', type=int, default=100)
+    parser.add_argument('-p', '--project', type=int, default=69)
+    parser.add_argument('-a', '--articleset', type=int, default=None)
     parser.add_argument('-v', '--verbose', action='store_true')
     return parser
 
@@ -131,4 +130,4 @@ if __name__ == "__main__":
         logger.info("Set logging level to INFO")
     n = args.nr_docs
 
-    parse_docs(n, args.output_dir, args.batch_size, args.input_dir)
+    parse_docs(n, args.output_dir, args.batch_size, args.input_dir, args.project, args.articleset)
