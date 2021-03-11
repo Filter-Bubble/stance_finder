@@ -20,10 +20,8 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
     for batch in range(math.ceil(nr_articles/batch_size)):
         id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
         conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
-        articles = conn.get_articles_by_id(articles=id_list_sub,
-                                           # project=project,
-                                           # articleset=articleset,
-                                           columns='date,title,text')
+        articles = list(conn.get_articles_by_id(articles=id_list_sub,
+                                           columns='date,title,text'))
         for art in articles:
             if i < nr_articles:
                 yield art
