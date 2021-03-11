@@ -42,6 +42,15 @@ def get_article_ids():
     return articles_ids
 
 
+def filter_article_ids(article_ids, output_dir):
+    # Exclude ids that already exist in output_dir
+    filtered_article_ids = []
+    for art_id in article_ids:
+        output_filename = os.path.join(output_dir, '{}.json'.format(art_id))
+        if not os.path.exists(output_filename):
+            filtered_article_ids.append(art_id)
+    return filtered_article_ids
+
 def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     doc_dict = {'id': doc_id, 'title': title}
     if text is not None:
@@ -65,6 +74,7 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
 def parse_docs(n, output_dir, batch_size, input_dir=None):
     if input_dir is None:
         article_ids = get_article_ids()
+        article_ids = filter_article_ids(article_ids, output_dir)
         articles = get_articles(article_ids, nr_articles=n, batch_size=batch_size)
         logger.info('Number of ids: {}'.format(len(article_ids)))
     else:
