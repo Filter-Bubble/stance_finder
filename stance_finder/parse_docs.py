@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 
 project = 69
 articleset = 2485
-nr_docs = 12100
 
 
 def get_articles(id_list, batch_size=100, nr_articles=None):
@@ -75,6 +74,8 @@ def parse_docs(n, output_dir, batch_size, input_dir=None):
     if input_dir is None:
         article_ids = get_article_ids()
         article_ids = filter_article_ids(article_ids, output_dir)
+        if n is None:
+            n = len(article_ids)
         articles = get_articles(article_ids, nr_articles=n, batch_size=batch_size)
         logger.info('Number of ids: {}'.format(len(article_ids)))
     else:
@@ -128,9 +129,6 @@ if __name__ == "__main__":
     if args.verbose:
         logger.setLevel(logging.INFO)
         logger.info("Set logging level to INFO")
-    if args.nr_docs is None:
-        n = nr_docs
-    else:
-        n = args.nr_docs
+    n = args.nr_docs
 
     parse_docs(n, args.output_dir, args.batch_size, args.input_dir)
