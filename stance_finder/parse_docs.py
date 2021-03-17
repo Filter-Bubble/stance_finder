@@ -56,6 +56,7 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
         for word in sent.words:
             word_dict = {}
             word_dict.update(word.to_dict())
+            word_dict['ner'] = word.parent.ner
             word_dict['srl'] = word.srl
             word_dict['frame'] = word.frame
             sent_list.append(word_dict)
