@@ -5,6 +5,7 @@ import os
 from tqdm import tqdm
 import logging
 import glob
+import unidecode
 import stanza
 import e2edutch.stanza
 import stroll.stanza
@@ -21,7 +22,7 @@ def get_articles(id_list, batch_size=100, nr_articles=None):
         id_list_sub = id_list[batch*batch_size:batch*batch_size+batch_size]
         conn = amcatclient.AmcatAPI("https://vu.amcat.nl")
         articles = list(conn.get_articles_by_id(articles=id_list_sub,
-                                           columns='date,title,text'))
+                                                columns='date,title,text'))
         for art in articles:
             if i < nr_articles:
                 yield art
@@ -44,6 +45,7 @@ def filter_article_ids(article_ids, output_dir):
             filtered_article_ids.append(art_id)
     return filtered_article_ids
 
+
 def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     doc_dict = {'id': doc_id, 'title': title}
     if text is not None:
@@ -62,6 +64,12 @@ def stanza_doc_to_dict(doc, doc_id='', title='', text=None):
     clusters_dict = [[span.to_dict() for span in cl] for cl in doc.clusters]
     doc_dict['clusters'] = clusters_dict
     return doc_dict
+
+
+def preprocess(text):
+    text = text.replace('„', '"')
+    text = unidecode.unidecode(text)
+    return text
 
 
 def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articleset=None):
@@ -87,12 +95,13 @@ def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articles
         n = len(articles)
     # Create nlp pipeline
     nlp = stanza.Pipeline(lang='nl',
-                          processors='tokenize,lemma,pos,depparse,srl,coref')
+                          processors='tokenize,lemma,pos,depparse,srl,coref,ner')
     for art in tqdm(articles, total=n):
         try:
             output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
-                doc = nlp(art['text'])
+                text = preprocess(art['text'])
+                doc = nlp(text)
                 doc_dict = stanza_doc_to_dict(doc,
                                               doc_id=art['id'],
                                               title=art['title'],

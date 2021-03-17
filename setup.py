@@ -46,10 +46,11 @@ setup(
     ],
     test_suite='tests',
     install_requires=[
-        "stanza",
+        "stanza>=1.2",
         "e2e-Dutch",
         "stroll-srl",
-        "amcatclient"],
+        "amcatclient",
+        "unidecode"],
     setup_requires=[
         # dependency for `python setup.py test`
         'pytest-runner',
