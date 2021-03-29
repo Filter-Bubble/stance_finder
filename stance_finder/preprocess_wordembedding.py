@@ -2,15 +2,17 @@ import re
 import sys
 import glob
 import os
+from unidecode import unidecode
 
 lettersanddotsonly = re.compile(r'[^a-zA-Z\.]')
 
 
 def preprocess(s):
-    # Should we first ascify?
+    # This is new: first ascify
+    s = unidecode(s)
     s = s.lower().replace('!', '.').replace('?', '.')  # replace ! and ? by . for splitting sentences
     s = lettersanddotsonly.sub(' ', s)
-    # Should we replace multiple consecutive whitespace by 1 space?
+
     return s
 
 
@@ -18,8 +20,8 @@ def get_sentences(filename):
     with open(filename) as fin:
         text = fin.read()
     sentences = preprocess(text).split('.')
-    sentence_as_list = [' '.join(s.split()) for s in sentences]
-    return sentences
+    sentences_as_list = [' '.join(s.split()) for s in sentences]
+    return sentences_as_list
 
 
 if __name__ == "__main__":
@@ -30,5 +32,6 @@ if __name__ == "__main__":
         for filename in glob.glob(os.path.join(input_dir, '*')):
             sentences = get_sentences(filename)
             for s in sentences:
-                fout.write(s)
-                fout.write('\n')
+                if len(s) > 0:
+                    fout.write(s)
+                    fout.write('\n')
