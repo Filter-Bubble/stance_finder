@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2021-09-30">
+    <creator>NetworkX 2.5</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="category" type="string" />
+    </attributes>
+    <nodes>
+      <node id="brexit" label="brexit" />
+      <node id="coronaherstelfonds" label="coronaherstelfonds" />
+      <node id="eu" label="eu" />
+      <node id="eurosceptische" label="eurosceptische" />
+      <node id="eurosceptici" label="eurosceptici" />
+      <node id="euroscepsis" label="euroscepsis" />
+      <node id="eurosceptisch" label="eurosceptisch" />
+      <node id="euroscepticisme" label="euroscepticisme" />
+      <node id="euroscepcis" label="euroscepcis" />
+      <node id="eurosceptischere" label="eurosceptischere" />
+      <node id="euroscep" label="euroscep" />
+      <node id="nexit" label="nexit" />
+      <node id="europese regeringsleiders" label="europese regeringsleiders" />
+      <node id="europese unie" label="europese unie" />
+      <node id="eurozone" label="eurozone" />
+      <node id="herstelfonds" label="herstelfonds" />
+      <node id="lidstaten" label="lidstaten" />
+      <node id="meerjarenbegroting" label="meerjarenbegroting" />
+      <node id="ecb" label="ecb" />
+      <node id="europese centrale bank" label="europese centrale bank" />
+      <node id="ema" label="ema" />
+      <node id="europees medicijn agentschap" label="europees medicijn agentschap" />
+      <node id="geneesmiddelenbureau" label="geneesmiddelenbureau" />
+      <node id="medicijnagentschap" label="medicijnagentschap">
+        <attvalues>
+          <attvalue for="0" value="expanded" />
+        </attvalues>
+      </node>
+      <node id="europarlementariers" label="europarlementariers" />
+      <node id="europese commissie" label="europese commissie" />
+      <node id="europarlementarier" label="europarlementarier" />
+      <node id="euroscepticus" label="euroscepticus" />
+      <node id="raad van ministers" label="raad van ministers" />
+      <node id="europe parlement" label="europe parlement" />
+      <node id="eurosceptischer" label="eurosceptischer" />
+      <node id="euroscepsisme" label="euroscepsisme" />
+      <node id="hof van justitie" label="hof van justitie" />
+    </nodes>
+    <edges>
+      <edge id="0" source="brexit" target="coronaherstelfonds" weight="0.7014799" />
+      <edge id="1" source="brexit" target="eu" weight="0.7009217" />
+      <edge id="2" source="brexit" target="eurosceptische" weight="0.74105614" />
+      <edge id="3" source="brexit" target="eurosceptici" weight="0.75484985" />
+      <edge id="4" source="brexit" target="euroscepsis" weight="0.7328749" />
+      <edge id="5" source="brexit" target="eurosceptisch" weight="0.71001625" />
+      <edge id="6" source="brexit" target="euroscepticisme" weight="0.71179026" />
+      <edge id="7" source="brexit" target="euroscepcis" weight="0.7347716" />
+      <edge id="8" source="brexit" target="eurosceptischere" weight="0.72291696" />
+      <edge id="9" source="brexit" target="euroscep" weight="0.74973774" />
+      <edge id="10" source="brexit" target="nexit" weight="0.78523904" />
+      <edge id="11" source="coronaherstelfonds" target="eu" weight="0.7897652" />
+      <edge id="12" source="coronaherstelfonds" target="europese regeringsleiders" weight="0.7730508" />
+      <edge id="13" source="coronaherstelfonds" target="europese unie" weight="0.7178095" />
+      <edge id="14" source="coronaherstelfonds" target="eurozone" weight="0.7009267" />
+      <edge id="15" source="coronaherstelfonds" target="herstelfonds" weight="0.964191" />
+      <edge id="16" source="coronaherstelfonds" target="lidstaten" weight="0.7957239" />
+      <edge id="17" source="coronaherstelfonds" target="meerjarenbegroting" weight="0.93714935" />
+      <edge id="18" source="eu" target="europarlementariers" weight="0.77512205" />
+      <edge id="19" source="eu" target="europese commissie" weight="0.84117985" />
+      <edge id="20" source="eu" target="europese regeringsleiders" weight="0.89009756" />
+      <edge id="21" source="eu" target="europese unie" weight="0.91082394" />
+      <edge id="22" source="eu" target="euroscepcis" weight="0.70745015" />
+      <edge id="23" source="eu" target="euroscep" weight="0.7090085999999999" />
+      <edge id="24" source="eu" target="eurozone" weight="0.7709135" />
+      <edge id="25" source="eu" target="herstelfonds" weight="0.75512636" />
+      <edge id="26" source="eu" target="lidstaten" weight="0.94594973" />
+      <edge id="27" source="eu" target="meerjarenbegroting" weight="0.7941269" />
+      <edge id="28" source="eurosceptische" target="europarlementarier" weight="0.70034724" />
+      <edge id="29" source="eurosceptische" target="europarlementariers" weight="0.73129135" />
+      <edge id="30" source="eurosceptische" target="eurosceptici" weight="0.934941" />
+      <edge id="31" source="eurosceptische" target="euroscepsis" weight="0.83133066" />
+      <edge id="32" source="eurosceptische" target="euroscepticus" weight="0.8839996999999999" />
+      <edge id="33" source="eurosceptische" target="eurosceptisch" weight="0.9304423" />
+      <edge id="34" source="eurosceptische" target="eurosceptischer" weight="0.91477084" />
+      <edge id="35" source="eurosceptische" target="euroscepticisme" weight="0.8757753" />
+      <edge id="36" source="eurosceptische" target="euroscepcis" weight="0.9203360999999999" />
+      <edge id="37" source="eurosceptische" target="eurosceptischere" weight="0.93102163" />
+      <edge id="38" source="eurosceptische" target="euroscepsisme" weight="0.79956585" />
+      <edge id="39" source="eurosceptische" target="euroscep" weight="0.91767234" />
+      <edge id="40" source="eurosceptische" target="nexit" weight="0.7854031" />
+      <edge id="41" source="eurosceptici" target="europarlementariers" weight="0.77767783" />
+      <edge id="42" source="eurosceptici" target="euroscepsis" weight="0.8674619" />
+      <edge id="43" source="eurosceptici" target="euroscepticus" weight="0.86215174" />
+      <edge id="44" source="eurosceptici" target="eurosceptisch" weight="0.9004293" />
+      <edge id="45" source="eurosceptici" target="eurosceptischer" weight="0.8789162" />
+      <edge id="46" source="eurosceptici" target="euroscepticisme" weight="0.90927494" />
+      <edge id="47" source="eurosceptici" target="euroscepcis" weight="0.9189056999999999" />
+      <edge id="48" source="eurosceptici" target="eurosceptischere" weight="0.86660075" />
+      <edge id="49" source="eurosceptici" target="euroscepsisme" weight="0.852131" />
+      <edge id="50" source="eurosceptici" target="euroscep" weight="0.89759713" />
+      <edge id="51" source="eurosceptici" target="nexit" weight="0.81284106" />
+      <edge id="52" source="euroscepsis" target="euroscepticus" weight="0.7897945" />
+      <edge id="53" source="euroscepsis" target="eurosceptisch" weight="0.8382323" />
+      <edge id="54" source="euroscepsis" target="eurosceptischer" weight="0.8343011999999999" />
+      <edge id="55" source="euroscepsis" target="euroscepticisme" weight="0.92798287" />
+      <edge id="56" source="euroscepsis" target="euroscepcis" weight="0.911366" />
+      <edge id="57" source="euroscepsis" target="eurosceptischere" weight="0.82266563" />
+      <edge id="58" source="euroscepsis" target="euroscepsisme" weight="0.96911913" />
+      <edge id="59" source="euroscepsis" target="euroscep" weight="0.8671617" />
+      <edge id="60" source="euroscepsis" target="nexit" weight="0.82054436" />
+      <edge id="61" source="eurosceptisch" target="europarlementarier" weight="0.7177776" />
+      <edge id="62" source="eurosceptisch" target="europarlementariers" weight="0.7086709" />
+      <edge id="63" source="eurosceptisch" target="euroscepticus" weight="0.8949870999999999" />
+      <edge id="64" source="eurosceptisch" target="eurosceptischer" weight="0.95381135" />
+      <edge id="65" source="eurosceptisch" target="euroscepticisme" weight="0.88897425" />
+      <edge id="66" source="eurosceptisch" target="euroscepcis" weight="0.9039018" />
+      <edge id="67" source="eurosceptisch" target="eurosceptischere" weight="0.92038023" />
+      <edge id="68" source="eurosceptisch" target="euroscepsisme" weight="0.81313425" />
+      <edge id="69" source="eurosceptisch" target="euroscep" weight="0.89816266" />
+      <edge id="70" source="eurosceptisch" target="nexit" weight="0.8215389000000001" />
+      <edge id="71" source="euroscepticisme" target="euroscepticus" weight="0.880814" />
+      <edge id="72" source="euroscepticisme" target="eurosceptischer" weight="0.85044914" />
+      <edge id="73" source="euroscepticisme" target="euroscepcis" weight="0.8990384" />
+      <edge id="74" source="euroscepticisme" target="eurosceptischere" weight="0.84146667" />
+      <edge id="75" source="euroscepticisme" target="euroscepsisme" weight="0.9505581" />
+      <edge id="76" source="euroscepticisme" target="euroscep" weight="0.87494314" />
+      <edge id="77" source="euroscepticisme" target="nexit" weight="0.82378197" />
+      <edge id="78" source="euroscepcis" target="europarlementariers" weight="0.7023729000000001" />
+      <edge id="79" source="euroscepcis" target="euroscepticus" weight="0.82914776" />
+      <edge id="80" source="euroscepcis" target="eurosceptischer" weight="0.8769447" />
+      <edge id="81" source="euroscepcis" target="eurosceptischere" weight="0.8626665000000001" />
+      <edge id="82" source="euroscepcis" target="euroscepsisme" weight="0.8739349000000001" />
+      <edge id="83" source="euroscepcis" target="euroscep" weight="0.9541552" />
+      <edge id="84" source="euroscepcis" target="nexit" weight="0.7684380999999999" />
+      <edge id="85" source="eurosceptischere" target="euroscepticus" weight="0.83578926" />
+      <edge id="86" source="eurosceptischere" target="eurosceptischer" weight="0.97419786" />
+      <edge id="87" source="eurosceptischere" target="euroscepsisme" weight="0.79133916" />
+      <edge id="88" source="eurosceptischere" target="euroscep" weight="0.8784698000000001" />
+      <edge id="89" source="eurosceptischere" target="nexit" weight="0.78596675" />
+      <edge id="90" source="euroscep" target="euroscepticus" weight="0.8600956" />
+      <edge id="91" source="euroscep" target="eurosceptischer" weight="0.8884107" />
+      <edge id="92" source="euroscep" target="euroscepsisme" weight="0.8381283000000002" />
+      <edge id="93" source="euroscep" target="nexit" weight="0.79455274" />
+      <edge id="94" source="nexit" target="euroscepticus" weight="0.75241214" />
+      <edge id="95" source="nexit" target="eurosceptischer" weight="0.77848697" />
+      <edge id="96" source="nexit" target="euroscepsisme" weight="0.7999482" />
+      <edge id="97" source="europese regeringsleiders" target="ecb" weight="0.7283586999999999" />
+      <edge id="98" source="europese regeringsleiders" target="europarlementariers" weight="0.7531882" />
+      <edge id="99" source="europese regeringsleiders" target="europe parlement" weight="0.72474873" />
+      <edge id="100" source="europese regeringsleiders" target="europese centrale bank" weight="0.75597006" />
+      <edge id="101" source="europese regeringsleiders" target="europese commissie" weight="0.88287497" />
+      <edge id="102" source="europese regeringsleiders" target="europese unie" weight="0.9034954" />
+      <edge id="103" source="europese regeringsleiders" target="eurozone" weight="0.7740373" />
+      <edge id="104" source="europese regeringsleiders" target="herstelfonds" weight="0.7455877" />
+      <edge id="105" source="europese regeringsleiders" target="lidstaten" weight="0.8845586" />
+      <edge id="106" source="europese regeringsleiders" target="meerjarenbegroting" weight="0.79929376" />
+      <edge id="107" source="europese regeringsleiders" target="raad van ministers" weight="0.71167994" />
+      <edge id="108" source="europese unie" target="europe parlement" weight="0.7202639" />
+      <edge id="109" source="europese unie" target="europees medicijn agentschap" weight="0.71484846" />
+      <edge id="110" source="europese unie" target="europese centrale bank" weight="0.7484294" />
+      <edge id="111" source="europese unie" target="europese commissie" weight="0.9047344999999999" />
+      <edge id="112" source="europese unie" target="eurozone" weight="0.74279696" />
+      <edge id="113" source="europese unie" target="lidstaten" weight="0.8667943000000001" />
+      <edge id="114" source="europese unie" target="meerjarenbegroting" weight="0.7289764" />
+      <edge id="115" source="eurozone" target="ecb" weight="0.8582752" />
+      <edge id="116" source="eurozone" target="europese centrale bank" weight="0.7631226999999999" />
+      <edge id="117" source="eurozone" target="herstelfonds" weight="0.7315248000000001" />
+      <edge id="118" source="eurozone" target="lidstaten" weight="0.7673326" />
+      <edge id="119" source="eurozone" target="meerjarenbegroting" weight="0.7124010000000001" />
+      <edge id="120" source="herstelfonds" target="ecb" weight="0.7268139" />
+      <edge id="121" source="herstelfonds" target="europese commissie" weight="0.7025518" />
+      <edge id="122" source="herstelfonds" target="lidstaten" weight="0.76789135" />
+      <edge id="123" source="herstelfonds" target="meerjarenbegroting" weight="0.89376515" />
+      <edge id="124" source="lidstaten" target="europarlementariers" weight="0.7812798000000001" />
+      <edge id="125" source="lidstaten" target="europese commissie" weight="0.8293888" />
+      <edge id="126" source="lidstaten" target="meerjarenbegroting" weight="0.8010125" />
+      <edge id="127" source="meerjarenbegroting" target="europese commissie" weight="0.7368226" />
+      <edge id="128" source="ecb" target="europese centrale bank" weight="0.84361875" />
+      <edge id="129" source="europese centrale bank" target="europese commissie" weight="0.77175534" />
+      <edge id="130" source="ema" target="europees medicijn agentschap" weight="0.73239374" />
+      <edge id="131" source="ema" target="geneesmiddelenbureau" weight="0.80920947" />
+      <edge id="132" source="ema" target="medicijnagentschap" weight="0.88281465" />
+      <edge id="133" source="europees medicijn agentschap" target="europese commissie" weight="0.7803465" />
+      <edge id="134" source="europees medicijn agentschap" target="geneesmiddelenbureau" weight="0.85714334" />
+      <edge id="135" source="europees medicijn agentschap" target="medicijnagentschap" weight="0.88116705" />
+      <edge id="136" source="geneesmiddelenbureau" target="medicijnagentschap" weight="0.9281393" />
+      <edge id="137" source="medicijnagentschap" target="europese commissie" weight="0.74836296" />
+      <edge id="138" source="europarlementariers" target="europarlementarier" weight="0.80773157" />
+      <edge id="139" source="europarlementariers" target="europese commissie" weight="0.7216223" />
+      <edge id="140" source="europarlementariers" target="raad van ministers" weight="0.7017803000000001" />
+      <edge id="141" source="europese commissie" target="europe parlement" weight="0.7281489999999999" />
+      <edge id="142" source="europese commissie" target="raad van ministers" weight="0.76859003" />
+      <edge id="143" source="europarlementarier" target="euroscepticus" weight="0.7583664999999999" />
+      <edge id="144" source="euroscepticus" target="eurosceptischer" weight="0.8607511999999998" />
+      <edge id="145" source="euroscepticus" target="euroscepsisme" weight="0.7773114999999999" />
+      <edge id="146" source="raad van ministers" target="europe parlement" weight="0.70813406" />
+      <edge id="147" source="raad van ministers" target="hof van justitie" weight="0.78559595" />
+      <edge id="148" source="eurosceptischer" target="euroscepsisme" weight="0.80319834" />
+    </edges>
+  </graph>
+</gexf>
