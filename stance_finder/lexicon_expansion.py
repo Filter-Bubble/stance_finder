@@ -1,3 +1,11 @@
+"""
+This is an attempt to implement a simplified version of Amslers lexicon expansion algorithm.
+Amslers implementation can be found at https://github.com/remamsler/LexExpander
+
+Reference:  Michael Amsler - "Using Lexical-Semantic Concepts
+for Fine-Grained Classification in the Embedding Space" (PhD Thesis)
+"""
+
 import fasttext
 import collections
 import numpy as np

@@ -1,3 +1,7 @@
+"""
+This is a comand-line script to retrieve articles from Amcat and dump them
+to either txt or json files.
+"""
 import amcatclient
 import sys
 from tqdm import tqdm

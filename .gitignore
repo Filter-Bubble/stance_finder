@@ -23,3 +23,7 @@ docs/apidocs
 
 # Mac
 .DS_Store
+
+
+notebooks/data/fasttext-aem-amcat50.bin
+notebooks/data/similarities/*

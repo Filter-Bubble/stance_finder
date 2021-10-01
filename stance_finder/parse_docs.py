@@ -1,3 +1,8 @@
+"""
+This script is to retrieve articles from Amcat and parse them with the stanza
+pipeline, including e2e-Dutch for coreference resolution and Stroll for semantic role labeling.
+"""
+
 import argparse
 import amcatclient
 import json

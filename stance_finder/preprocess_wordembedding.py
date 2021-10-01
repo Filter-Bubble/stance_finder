@@ -1,3 +1,7 @@
+"""
+Preprocess text documents to have them serve as input for training a word embedding model.
+Based on code of https://github.com/annekroon/AEM/blob/master/model_training/make_tmpfileuniekezinnen.py
+"""
 import re
 import sys
 import glob
