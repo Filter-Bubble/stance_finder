@@ -24,5 +24,5 @@ def an_object():
     return {}
 
 
-def test_stance_finder(an_object):
-    assert an_object == {}
+def test_download():
+    stance_finder.download_models()
