@@ -104,7 +104,8 @@ def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articles
                           processors='tokenize,lemma,pos,depparse,srl,coref,ner')
     for art in tqdm(articles, total=n):
         try:
-            output_filename = os.path.join(output_dir, '{}.json'.format(art['id']))
+            output_filename = os.path.join(
+                output_dir, '{}.json'.format(art['id']))
             if not os.path.exists(output_filename):
                 text = preprocess(art['text'])
                 doc = nlp(text)
@@ -117,7 +118,8 @@ def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articles
             else:
                 logger.info("Document {} already parsed".format(art['id']))
         except Exception as e:
-            logger.error('Error with article {}'.format(art.get('id', 'UNKNOWN')))
+            logger.error('Error with article {}'.format(
+                art.get('id', 'UNKNOWN')))
             logger.error(e)
             # Refresh pipeline
             nlp = stanza.Pipeline(lang='nl',
@@ -143,4 +145,5 @@ if __name__ == "__main__":
         logger.info("Set logging level to INFO")
     n = args.nr_docs
 
-    parse_docs(n, args.output_dir, args.batch_size, args.input_dir, args.project, args.articleset)
+    parse_docs(n, args.output_dir, args.batch_size,
+               args.input_dir, args.project, args.articleset)

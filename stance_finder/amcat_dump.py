@@ -45,7 +45,8 @@ def get_parser():
     parser.add_argument('-b', '--batch_size', type=int, default=100)
     parser.add_argument('-p', '--project', type=int, default=69)
     parser.add_argument('-a', '--articleset', type=int, default=None)
-    parser.add_argument('-f', '--format', choices=['json', 'txt'], default='json')
+    parser.add_argument(
+        '-f', '--format', choices=['json', 'txt'], default='json')
     parser.add_argument('-max', '--max_date', type=str, default=None,
                         help='max date in format 2021-03-17T00:00:00')
     parser.add_argument('-min', '--min_date', type=str, default=None,

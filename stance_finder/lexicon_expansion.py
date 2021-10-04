@@ -73,7 +73,8 @@ def iterative_lexicon_expansion(fasttext_model, seed_terms, nnmodel=None,
             else:
                 not_in_lex.append((candidate_score, candidate))
         final_candidates.extend([w for _, w in not_in_lex])
-        new_seedterms = resample(in_lex, *samplesize_lex) + resample(not_in_lex, *samplesize_nonlex)
+        new_seedterms = resample(in_lex, *samplesize_lex) + \
+            resample(not_in_lex, *samplesize_nonlex)
 
     final_candidates_agg = collections.Counter(final_candidates)
     filtered_candidates, _ = zip(*final_candidates_agg.most_common(filter_to))

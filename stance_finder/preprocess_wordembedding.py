@@ -14,7 +14,8 @@ lettersanddotsonly = re.compile(r'[^a-zA-Z\.]')
 def preprocess(s):
     # This is new: first ascify
     s = unidecode(s)
-    s = s.lower().replace('!', '.').replace('?', '.')  # replace ! and ? by . for splitting sentences
+    # replace ! and ? by . for splitting sentences
+    s = s.lower().replace('!', '.').replace('?', '.')
     s = lettersanddotsonly.sub(' ', s)
 
     return s
