@@ -59,7 +59,6 @@ setup(
         'sphinx_rtd_theme',
         'recommonmark'
     ],
-    dependency_links=['http://github.com/Filter-Bubble/strol/tarball/master#egg=stroll-srl'],
     tests_require=test_deps,
     extras_require={
         'dev':  ['prospector[with_pyroma]', 'yapf', 'isort'] + test_deps,
