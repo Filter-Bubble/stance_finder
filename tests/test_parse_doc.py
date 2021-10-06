@@ -12,3 +12,8 @@ def test_preprocess():
     text = '„žë"'
     preprocessed_text = parse_docs.preprocess(text)
     assert preprocessed_text == '"ze"'
+
+
+def test_get_pipeline():
+    nlp = parse_docs.get_pipeline()
+    assert 'coref' in nlp.processors

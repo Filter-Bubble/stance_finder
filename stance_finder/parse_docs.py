@@ -78,6 +78,11 @@ def preprocess(text):
     return text
 
 
+def get_pipeline():
+    return stanza.Pipeline(lang='nl',
+                           processors='tokenize,lemma,pos,depparse,srl,coref,ner')
+
+
 def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articleset=None):
     if input_dir is None:
         article_ids = get_article_ids(project=project, articleset=articleset)
@@ -100,8 +105,7 @@ def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articles
         logger.info('Number of articles: {}'.format(len(articles)))
         n = len(articles)
     # Create nlp pipeline
-    nlp = stanza.Pipeline(lang='nl',
-                          processors='tokenize,lemma,pos,depparse,srl,coref,ner')
+    nlp = get_pipeline()
     for art in tqdm(articles, total=n):
         try:
             output_filename = os.path.join(
@@ -122,8 +126,7 @@ def parse_docs(n, output_dir, batch_size, input_dir=None, project=None, articles
                 art.get('id', 'UNKNOWN')))
             logger.error(e)
             # Refresh pipeline
-            nlp = stanza.Pipeline(lang='nl',
-                                  processors='tokenize,lemma,pos,depparse,srl,coref')
+            nlp = get_pipeline()
 
 
 def get_parser():
