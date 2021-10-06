@@ -47,6 +47,7 @@ setup(
     test_suite='tests',
     install_requires=[
         "stanza>=1.2",
+        "tensorflow>=2.2",
         "e2e-Dutch",
         "stroll-srl",
         "amcatclient",
